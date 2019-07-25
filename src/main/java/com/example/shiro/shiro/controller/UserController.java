@@ -49,6 +49,17 @@ public class UserController {
     }
 
 
+    /**
+     * 首先通过前端页面的form表单提交，在Controller请求处理层获取了form表单中的账号密码，
+     * 然后获取当前用户的Subject对象，执行了Subject的login方法进行登录操作
+     * 并将账号密码封装进Token对象，作为参数传入。而后面设置了认证需要的Realm类，该Realm类继承了AuthenticatingRealm父类，
+     * 实现了doGetAuthenticationInfo方法，在doGetAuthenticationInfo方法中获取用户的账号密码，在做完一些校验后，
+     * 传递给了SimpleAuthenticationInfo，并返回出去：
+     * @param username
+     * @param password
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/login")
     public String login(String username, String password, Model model) {
         System.out.printf("username :" + username);
