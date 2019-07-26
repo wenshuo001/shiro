@@ -1,7 +1,8 @@
 package com.example.shiro.shiro.real;
 
 import com.example.shiro.bean.User;
-import com.example.shiro.service.CategoryService;
+import com.example.shiro.service.LoginService;
+import com.example.shiro.utlis.TokenUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -14,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class UserRealm  extends AuthorizingRealm {
 
     @Autowired
-    private CategoryService service;
+    private LoginService service;
 
     /**
      * 执行授权逻辑
@@ -47,6 +48,8 @@ public class UserRealm  extends AuthorizingRealm {
         if (null == user || !user.getUserName().equals(usernamePasswordToken.getUsername())) {
             //用户名称不存在，Shiro底层会抛出UnknowAccountException
             return null;
+        }else {
+            user.setToken(TokenUtil.generateToken(user.getPassword()));
         }
         //3、判断密码是否正确
         return new SimpleAuthenticationInfo(user, user.getPassword(), "");

@@ -1,22 +1,19 @@
 package com.example.shiro.service;
 
 
-import com.example.shiro.bean.Category;
 import com.example.shiro.bean.User;
-import com.example.shiro.mapper.CategoryMapper;
+import com.example.shiro.mapper.LoginMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
-public class CategoryService {
+public class LoginService {
     @Autowired
-    private CategoryMapper categoryMapper;
+    private LoginMapper categoryMapper;
 
-    public List<Category> queryByBrandId(Long bid) {
-        return this.categoryMapper.queryByBrandId(bid);
-    }
+//    public List<Category> queryByBrandId(Long bid) {
+//        return this.categoryMapper.queryByBrandId(bid);
+//    }
 
 
     public User findUserByName(String userName) {

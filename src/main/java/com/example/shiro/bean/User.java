@@ -14,5 +14,5 @@ public class User implements Serializable {
     private String password;
     private String email;
     private String perms;
-
+    private String token;
 }
